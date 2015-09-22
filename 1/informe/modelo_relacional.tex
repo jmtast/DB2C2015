@@ -1,0 +1,162 @@
+\section{Modelo Relacional}
+A continuación documentamos el pasaje del \textbf{DER} anteriormente expuesto al \textbf{MR} que luego será el que represente las tablas físicas en nuestra base de datos. Primero se anotan las tuplas que representan cada tabla y sus columnas, y luego, de ser necesario, las \textit{Restricciones Adicionales} (RA):\\
+\\
+\tuple{ParametroBooleano}{\pk{idParamBool}, Nombre}
+\ra{\attr{ParametroBooleano.Nombre} no puede ser nulo.}
+\\
+\tuple{ParametroString}{\pk{idParamString}, Nombre}
+\ra{\attr{ParametroString.Nombre} no puede ser nulo.}
+\\
+\tuple{ParametroNumerico}{\pk{idParamNum}, Nombre}
+\ra{\attr{ParametroNumerico.Nombre} no puede ser nulo.}
+\\
+\tuple{MedicionBooleano}{\pk{idParamBool}, \pk{idPeritaje}, Valor}
+\ra{\attr{MedicionBooleano.Valor} no puede ser nulo.}
+\\
+\tuple{MedicionString}{\pk{idParamString}, \pk{idPeritaje}, Valor}
+\ra{\attr{MedicionString.Valor} no puede ser nulo.}
+\\
+\tuple{MedicionNumerico}{\pk{idParamNum}, \pk{idPeritaje}, Valor}
+\ra{\attr{MedicionNumerico.Valor} no puede ser nulo.}
+\\
+\tuple{Peritaje}{\pk{idPeritaje}, Fecha, Informe, \fk{idDenuncia}}
+\ra{\attr{Peritaje.Fecha} debe ser posterior a \attr{Denuncia.Fecha}, con \attr{Denuncia.idDenuncia} = \attr{Peritaje.idDenuncia}.}
+\ra{\attr{Peritaje.Fecha} debe ser anterior o igual al día de hoy.}
+\\
+\tuple{RespRealizaPeritaje}{\pk{idResponsable}, \pk{idPeritaje}}
+\\
+\tuple{ResponsablePeritaje}{\pk{idResponsable}, Nombre, Organizacion}
+\ra{\attr{ResponsablePeritaje.Nombre} no puede ser nulo.}
+\ra{\attr{ResponsablePeritaje.Organizacion} no puede ser nulo.}
+\\
+\tuple{DenunciaPolicial}{\pk{idDenuncia}, FechaDelSiniestro, FechaDeAlta, Descripcion, AlturaCamino, \fk{idCamino}, \fk{idModalidad}}
+\ra{\attr{DenunciaPolicial.FechaDelSiniestro} no puede ser nulo.}
+\ra{\attr{DenunciaPolicial.FechaDelSiniestro} debe ser igual o anterior a \attr{DenunciaPolicial.FechaDeAlta}.}
+\ra{\attr{DenunciaPolicial.FechaDeAlta} no puede ser nulo.}
+\ra{\attr{DenunciaPolicial.Descripcion} no puede ser nulo.}
+\ra{\attr{DenunciaPolicial.AlturaCamino} no puede ser nulo.}
+\ra{\attr{DenunciaPolicial.AlturaCamino} no puede ser negativa.}
+\ra{\attr{DenunciaPolicial.idCamino} no puede ser nulo.}
+\ra{\attr{DenunciaPolicial.idModalidad} no puede ser nulo.}
+\\
+\tuple{ModalidadDeAccidente}{\pk{idModalidad}, Nombre, Descripción}
+\ra{\attr{ModalidadDeAccidente.Nombre} no puede ser nulo.}
+\ra{\attr{ModalidadDeAccidente.Descripcion} no puede ser nulo.}
+\\
+\tuple{Camino}{\pk{idCamino}, Longitud, Nombre, \fk{idTipoCamino}}
+\ra{\attr{Camino.Longitud} no puede ser nulo.}
+\ra{\attr{Camino.Longitud} no puede ser negativa.}
+\ra{\attr{Camino.Nombre} no puede ser nulo.}
+\ra{\attr{Camino.idTipoCamino} no puede ser nulo.}
+\\
+\tuple{TipoDeCamino}{\pk{idTipoCamino}, Nombre}
+\ra{\attr{TipoDeCamino.Nombre} no puede ser nulo.}
+\\
+\tuple{Persona}{\pk{idPersona}, Nombre, Apellido, FechaDeNacimiento, DNI}
+\ra{\attr{Persona.Nombre} no puede ser nulo.}
+\ra{\attr{Persona.Apellido} no puede ser nulo.}
+\ra{\attr{Persona.FechaDeNacimiento} no puede ser nulo.}
+\ra{\attr{Persona.FechaDeNacimiento} debe ser anterior o igual al día de hoy.}
+\ra{\attr{Persona.DNI} no puede ser nulo.}
+\ra{\attr{Persona.DNI} no puede ser negativo.}
+\\
+\tuple{Responsable}{\pk{idDenuncia}, \pk{idPersona}}
+\\
+\tuple{Testigo}{\pk{idDenuncia}, \pk{idPersona}}
+\\
+\tuple{Participante}{\pk{idDenuncia}, \pk{idPersona}}
+\\
+\tuple{AntecedentePenal}{\pk{idAntecedente}, NroAntecedente, Fecha, \fk{idPersona}, \fk{idTipoAntecedente}}
+\ra{\attr{AntecedentePenal.NroAntecedente} no puede ser nulo.}
+\ra{\attr{AntecedentePenal.NroAntecedente} no puede ser negativo.}
+\ra{\attr{AntecedentePenal.Fecha} no puede ser nulo.}
+\ra{\attr{AntecedentePenal.Fecha} debe ser anterior o igual al día de hoy.}
+\ra{\attr{AntecedentePenal.idPersona} no puede ser nulo.}
+\ra{\attr{AntecedentePenal.idTipoAntecedente} no puede ser nulo.}
+\nota{Ver aclaración número 2 sobre \attr{idAntecedente} y \attr{NroAntecedente}.}
+\\
+\tuple{TipoDeAntecedente}{\pk{idTipoAntecedente}, Nombre}
+\ra{\attr{TipoDeAntecedente.Nombre} no puede ser nulo.}
+\\
+\tuple{CategoriaDeLicencia}{\pk{idCatLic}, Nombre}
+\ra{\attr{CategoriaDeLicencia.Nombre} no puede ser nulo.}
+\\
+\tuple{LicenciaDeConducir}{\pk{idLicencia}, FechaDesde, FechaHasta, \fk{idPersona}, \fk{idCatLic}}
+\ra{\attr{LicenciaDeConducir.FechaDesde} no puede ser nula.}
+\ra{\attr{LicenciaDeConducir.FechaHasta} no puede ser nula.}
+\ra{\attr{LicenciaDeConducir.FechaDesde} debe ser anterior a \attr{LicenciaDeConducir.FechaHasta}.}
+\ra{\attr{LicenciaDeConducir.idPersona} no puede ser nulo.}
+\ra{\attr{LicenciaDeConducir.idCatLic} no puede ser nulo.}
+\ra{Para un mismo \attr{LicenciaDeConducir.idPersona}, los rangos de Fecha de Licencia (FechaDesde~FechaHasta) son excluyentes. Es decir, una persona dada puede tener una única licencia vigente.}
+\\
+\tuple{Vehiculo}{\pk{idVehiculo}, NroChapa, Marca, Modelo, FechaDePatentamiento, \fk{idCategoria}}
+\ra{\attr{Vehiculo.NroChapa} no puede ser nulo.}
+\ra{\attr{Vehiculo.NroChapa} debe respetar el formato ``LLL/NNN'' con `L' cualquier letra mayúscula y `N` cualquier número del 0 al 9.}
+\ra{\attr{Vehiculo.Marca} no puede ser nulo.}
+\ra{\attr{Vehiculo.Modelo} no puede ser nulo.}
+\ra{\attr{Vehiculo.FechaDePatentamiento} no puede ser nulo.}
+\ra{\attr{Vehiculo.FechaDePatentamiento} debe ser anterior o igual al día de hoy.}
+\ra{\attr{Vehiculo.idCategoria} no puede ser nulo.}
+\\
+\tuple{PersonaDuenaVehiculo}{\pk{idVehiculo}, \pk{idPersona}, \pk{Fecha}}
+\ra{\attr{PersonaDuenaVehiculo.Fecha} no puede ser nulo.}
+\nota{Ver aclaración número 8 sobre \attr{FechaHasta}.}
+\\
+\tuple{PersonaPuedeManejarVehiculo}{\pk{idVehiculo}, \pk{idPersona}, \pk{FechaDesde}, FechaHasta}
+\ra{\attr{PersonaPuedeManejarVehiculo.FechaDesde} no puede ser nulo.}
+\ra{\attr{PersonaPuedeManejarVehiculo.FechaHasta} no puede ser nulo.}
+\\
+\tuple{CategoriaDelVehiculo}{\pk{idCategoria}, Nombre}
+\ra{\attr{CategoriaDelVehiculo.Nombre} no puede ser nulo.}
+\\
+\tuple{Multa}{\pk{idMulta}, Fecha, Valor, \fk{idTipoInfraccion}, \fk{idVehiculo}}
+\ra{\attr{Multa.Fecha} no puede ser nula.}
+\ra{\attr{Multa.Fecha} debe ser anterior o igual al día de hoy.}
+\ra{\attr{Multa.Valor} no puede ser nulo.}
+\ra{\attr{Multa.Valor} no puede ser negativo.}
+\ra{\attr{Multa.idTipoInfraccion} no puede ser nulo.}
+\ra{\attr{Multa.idVehiculo} no puede ser nulo.}
+\nota{La moneda representa pesos Argentinos.}
+\\
+\tuple{TipoDeInfraccion}{\pk{idTipoInfraccion}, Nombre}
+\ra{\attr{TipoDeInfraccion.Nombre} no puede ser nulo.}
+\\
+\tuple{Poliza}{\pk{idPoliza}, Fecha, \fk{idVehiculo}, \fk{idCompaniaSeguros}}
+\ra{\attr{Poliza.Fecha} no puede ser nula.}
+\ra{\attr{Poliza.Fecha} debe ser posterior o igual al día de hoy.}
+\ra{\attr{Poliza.idVehiculo} no puede ser nulo.}
+\ra{\attr{Poliza.idCompaniaSeguros} no puede ser nulo.}
+\\
+\tuple{CompaniaDeSeguros}{\pk{idCompaniaSeguros}, NombreCompania}
+\ra{\attr{idCompaniaSeguros.NombreCompania} no puede ser nulo.}
+\\
+\tuple{TipoDeCobertura}{\pk{idTipoCobertura}, CodigoTipoCobertura, DescTipoCobertura}
+\ra{\attr{TipoDeCobertura.CodigoTipoCobertura} no puede ser nulo.}
+\ra{\attr{TipoDeCobertura.CodigoTipoCobertura} no puede ser negativo.}
+\ra{\attr{TipoDeCobertura.DescTipoCobertura} no puede ser nulo.}
+\\
+\tuple{PolizaTieneTipoDeCobertura}{\pk{idPoliza}, \pk{idTipoCobertura}}
+
+\subsection{Otras resticciones adicionales}
+\hspace{-0.5cm}\ra{\attr{Poliza.Fecha} debe ser posterior a \attr{Vehiculo.FechaPatentamiento} para todas las pólizas de un vehículo dado.}
+\ra{\attr{DenunciaPolicial.FechaDelSiniestro} debe ser posterior a \attr{Vehiculo.FechaPatentamiento} para todas las denuncias en las que está involucrado un vehículo dado.}
+
+\subsection{Equivalencias de nombres de tablas MR $\leftrightarrow$ DER}
+En esta sección aclararemos el mapeo entre las tablas/tuplas del Modelo Relacional expuesto y las entidades e interrelaciones mostradas en el Diagrama Entidad-Relación, dado que por la naturaleza de la convención de lectura del mismo, al pasar a MR, algunas tablas intermedias quedaban con nombres poco descriptivos. Las equivalencias son:
+\begin{itemize}
+	\item ``RespRealizaPeritaje'' es ``Realiza'' de ``ResponsablePeritaje'' a ``Peritaje''
+	\item ``PersonaDuenaVehiculo'' es ``EsDuena'' de ``Persona'' a ``Vehiculo''
+	\item ``PolizaTieneTipoDeCobertura'' es ``Tiene'' de ``Poliza'' a ``TipoDeCobertura''
+\end{itemize}
+
+\subsection{Aclaraciones varias}
+\begin{enumerate}
+	\item La longitud del camino está expresada en kilómetros.
+	\item En la parte de \attr{AntecedentePenal}, decidimos modelar nuestro id interno como \attr{idAntecedente}, siendo el identificador externo (propio del antecedente en el sistema de un tercero) un número distinto.
+	\item La duración de las poliza de seguro es de 1 año a partir de la fecha de inicio.
+	\item El informe del peritaje es un texto corto (hasta 400 caracteres).
+	\item A pesar de que en el mundo real puede haber vehículos sin patente(no patentados aun), en este modelo no se incluyen esos casos para simplificar el mismo (sino requeriría identificar vehículos por número de motor, chasis, etc).
+	\item Se considera que un vehiculo puede tener varias polizas.
+	\item \attr{PersonaDuenaVehiculo} no tiene un campo \attr{FechaHasta} porque hasta que no lo vende es dueña del mismo.
+	\item Una Póliza tiene una fecha, una compañia de seguro. Los tipos de cobertura de una poliza pueden ser varios por poliza. Por ejemplo, una poliza puede tener cobertura Contra Terceros, Incendio, Daño por Granizo, etc. Cada uno de estos es un tipo de cobertura y puede haber una poliza con varios de ellos y cada uno pertenecer a muchas polizas distintas. Por eso la relacion es N-M.
+\end{enumerate}

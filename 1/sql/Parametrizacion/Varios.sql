@@ -8,13 +8,9 @@ INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Autopista');					// 7
 INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle de Tierra Urbana');		// 8
 INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle de Tierra Suburbana');	// 9
 
-
-
-
 INSERT INTO ParametroBooleano 			(Nombre) 					VALUES ('Usaba Cinturon');
 INSERT INTO ParametroBooleano 			(Nombre) 					VALUES ('Funcionaron los Frenos');
 INSERT INTO ParametroBooleano 			(Nombre) 					VALUES ('Alcohol en Sangre');
-                                                                    
                                                                     
 INSERT INTO ParametroString 			(Nombre) 					VALUES ('Estado de la Carretera');
 INSERT INTO ParametroString 			(Nombre) 					VALUES ('Nivel de Destruccion del Vehiculo');
@@ -31,8 +27,7 @@ INSERT INTO ModalidadDeAccidente 		(Nombre, Descripcion) 		VALUES ('Incendio', '
 INSERT INTO ModalidadDeAccidente 		(Nombre, Descripcion) 		VALUES ('Choque a peaton', 'Choque a peaton individual o multiples peatones');
 INSERT INTO ModalidadDeAccidente 		(Nombre, Descripcion) 		VALUES ('Choque objeto inmovil', 'Choque a objeto inmovil. Incluye elementos de señalizacion.');
 
-
-INSERT INTO ResponsablePeritaje 		(Nombre, Organizacion) 		VALUES ('Rosario Fernández', 'Policia Federal');
+INSERT INTO ResponsablePeritaje 		(Nombre, Organizacion) 		VALUES ('Rosario Fernández', 'Policia Federal');			
 INSERT INTO ResponsablePeritaje 		(Nombre, Organizacion) 		VALUES ('Rafael Amado', 'Policia Federal');
 INSERT INTO ResponsablePeritaje 		(Nombre, Organizacion) 		VALUES ('Emilio Bazán', 'Policia Federal');
 INSERT INTO ResponsablePeritaje 		(Nombre, Organizacion) 		VALUES ('Alfonso López', 'Gendarmeria');

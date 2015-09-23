@@ -1,5 +1,5 @@
 
--- Rutas nacionales
+-- Rutas nacionales ids: 1-15
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (100, 'Ruta nacional Nro 1', 1);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (200, 'Ruta nacional Nro 2', 1);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (300, 'Ruta nacional Nro 3', 1);
@@ -14,7 +14,7 @@ INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (1100, 'Ruta naciona
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (1200, 'Ruta nacional Nro 12', 1);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (1300, 'Ruta nacional Nro 13', 1);
 
--- Rutas provinciales
+-- Rutas provinciales Ids: 16-26
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (100, 'Ruta provincial Nro 1 de Buenos Aires', 2);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (110, 'Ruta provincial Nro 2 de Buenos Aires', 2);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (120, 'Ruta provincial Nro 3 de Buenos Aires', 2);
@@ -26,14 +26,14 @@ INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (170, 'Ruta provinci
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (180, 'Ruta provincial Nro 9 de Buenos Aires', 2);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (190, 'Ruta provincial Nro 10 de Buenos Aires', 2);
 
--- Calles asfaltadas urbanas
+-- Calles asfaltadas urbanas ids: 27-31
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Acevedo', 4);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Acoyte', 4);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Adolfo Alsina', 4);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Agrelo', 4);
 
 
--- Avenidas
+-- Avenidas ids: 32- 38
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'San Pedrito', 6);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Av. Rivadavia', 6);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Av. 9 de Julio', 6);
@@ -41,7 +41,7 @@ INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Av. de Mayo', 
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Av. Del Libertador', 6);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Av. Montes de Oca', 6);
 
--- Autopistas
+-- Autopistas ids: 39-43
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Autopista 9 de Julio ', 7);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Acceso Oeste', 7);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Acceso Sudeste', 7);
@@ -49,7 +49,7 @@ INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Acceso Norte',
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'General Paz', 7);
 
 
--- Calle de tierra urbana
+-- Calle de tierra urbana ids: 44-45
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'French', 8);
 INSERT INTO Camino 	(Longitud, Nombre, idTipoCamino) VALUES (20, 'Lavalle', 8);
 

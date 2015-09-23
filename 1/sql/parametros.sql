@@ -17,7 +17,7 @@ INSERT INTO Testigo						(idDenuncia, idPersona) 										VALUES (0, 0);
 INSERT INTO Participante				(idDenuncia, idPersona) 										VALUES (0, 0);
 INSERT INTO TipoDeAntecedente 			(Nombre) 														VALUES ('');
 INSERT INTO AntecedentePenal 			(NroAntecedente, Fecha, idPersona, idTipoAntecedente) 			VALUES (0, CURRENT_TIMESTAMP, 0, 0);
-INSERT INTO CategoriaDeLicencia			(Nombre, idPersona) 											VALUES ('', 0);
+INSERT INTO CategoriaDeLicencia			(Nombre) 											VALUES ('');
 INSERT INTO LicenciaDeConducir			(idPersona, FechaDesde, FechaHasta, idCatLic) 					VALUES (0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
 INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 											VALUES (0, '');
 INSERT INTO Vehiculo 					(NroChapa, Marca, Modelo, FechaDePatentamiento, idCategoria) 	VALUES ('', '', '', CURRENT_TIMESTAMP, 0);
@@ -53,3 +53,5 @@ INSERT INTO PersonaDuenaDeVehiculo 		(idVehiculo, idPersona, Fecha) 									VAL
 INSERT INTO PersonaDuenaDeVehiculo 		(idVehiculo, idPersona, Fecha) 									VALUES (1, 1, CURRENT_TIMESTAMP);
 
 INSERT INTO PersonaPuedeManejarVehiculo (idVehiculo, idPersona, FechaDesde, FechaHasta) 				VALUES (3, 1, '2015-01-01', '2016-01-01');
+
+

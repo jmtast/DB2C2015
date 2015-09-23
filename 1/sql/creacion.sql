@@ -142,8 +142,7 @@ CREATE TABLE AntecedentePenal(
 
 CREATE TABLE CategoriaDeLicencia(
     idCatLic INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    Nombre VARCHAR(50) NOT NULL,
-    idPersona INTEGER NOT NULL
+    Nombre VARCHAR(400) NOT NULL
 );
 
 CREATE TABLE LicenciaDeConducir (
@@ -156,7 +155,7 @@ CREATE TABLE LicenciaDeConducir (
 	FOREIGN KEY(idPersona) REFERENCES Persona(idPersona)
 );
 
-CREATE TABLE CategoriaDelVehículo(
+CREATE TABLE CategoriaDelVehiculo(
     idCategoria INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     Nombre VARCHAR(50)
 );
@@ -192,7 +191,7 @@ CREATE TABLE PersonaPuedeManejarVehiculo(
 
 CREATE TABLE TipoDeInfraccion(
     idTipoInfraccion  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    Nombre VARCHAR(50) NOT NULL
+    Nombre VARCHAR(400) NOT NULL
 );
 
 CREATE TABLE Multa(

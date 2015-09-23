@@ -1,0 +1,15 @@
+\section{Introducción}
+El objetivo de este trabajo práctico es tratar de modelar, de la manera más fiel posible, un problema del mundo real mediante un \textbf{Diagrama Entidad-Relación}(DER). Luego de tener determinado mediante dicho diagrama, las \textit{entidades}, sus \textit{atributos} e \textit{interrelaciones} entre ellas, se pasará a definir el \textbf{Modelo Relacional}.\\
+\\
+\indent El Modelo Relacional derivado del DER es el que representa fielmente el futuro modelado físico en una base de datos real. Este consta de \textbf{tuplas} que representan las \textbf{tablas} de la base de datos física, junto a sus \textbf{columnas}.\\
+\\
+\indent Las columnas en el modelo físico tendrán los nombres aquí expuestos, habiendo además, dos tipos especiales: las \pk{primary key} (clave primaria de la tabla, subrayada con línea sólida) y las \fk{foreign key} (subrayada con línea punteada, hace referencia a la primary key de otra tabla).\\
+\\
+\indent La estructura del trabajo práctico seguirá el órden que tomamos para el desarrollo de las distintas partes del mismo, es decir, primero el DER, luego el Modelo Relacional derivado, y finalmente tenemos aparte la base de datos física junto con las consultas pedidas en el enunciado.
+
+\subsection{Datos de ejemplo}
+Hemos buscado datos de ejemplo para agregarle un poco de realismo a las tablas y, en consecuencia, a los resultados de las consultas sobre la base de datos, y hemos encontrado las siguientes fuentes de información:
+\begin{itemize}
+	\item \href{https://www.sat.gob.pe/websitev8/Modulos/contenidos/mult_Papeletas_ti_rnt.aspx}{\textbf{Servicio de Administración Tributaria de Lima}} para los detalles de infracciones.
+	\item \href{http://www.buenosaires.gob.ar/areas/obr_publicas/lic_conducir/categorias.php?menu_id=6427}{\textbf{Categorías de licencias de conducir de la Ciudad de Buenos Aires}}.
+\end{itemize}

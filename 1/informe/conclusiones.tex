@@ -1,0 +1,8 @@
+\section{Conclusiones}
+Este trabajo nos permitió poner en práctica varios de los conceptos vistos en clase (consultas, triggers, stored procedures, etc.) y trabajar con un motor de base de datos reducido como lo es PostgreSQL. Nos dejó meternos de lleno en todo el proceso posterior al relevamiento de requerimientos, desde el pensado y modelado del DER, hasta el momento en el que se tiene una base de datos física funcionando.\\
+\\
+Consideramos que la misma modela un caso de la vida real con la suficiente fidelidad como para ser utilizable, pero teniendo en cuenta las abstracciones pertinentes para que no se convierta en un modelo monolítico de difícil entendimiento.\\
+\\
+Este sistema tiene la particularidad de trabajar con datos provenientes de otros sistemas (como el de las infracciones de la Ciudad de Buenos Aires), adaptados a nuestro propio sistema interno, permitiendo que si dichos terceros mantienen una API, el nuestro funcione sin problemas utilizando tanto su información, como la nuestra.\\
+\\
+A futuro, el sistema se podría extender para incluir más información o aumentar la granularidad de las representaciones (por ejemplo, para incluir más detalle sobre los caminos, como sus coordenadas, entre otras cosas). Optamos para este caso en particular, tratar de mantener un scope limitado sin que sea demasiado pequeño, para mantenernos dentro del marco de lo que es un trabajo práctico, pero en las discusiones que tuvimos para modelar, surgieron muchas más ideas que fueron descartadas por estos motivos.

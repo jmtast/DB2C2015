@@ -40,7 +40,7 @@ CREATE TABLE DenunciaPolicial (
 	AlturaCamino INTEGER    NOT NULL,
 	idCamino INTEGER    NOT NULL,
 	idModalidad  INTEGER    NOT NULL ,
-	FOREIGN KEY(idCamino) REFERENCES TipoDeCamino(idCamino),
+	FOREIGN KEY(idCamino) REFERENCES Camino(idCamino),
 	FOREIGN KEY(idModalidad) REFERENCES ModalidadDeAccidente(idModalidad)
 );
 
@@ -167,7 +167,7 @@ CREATE TABLE Vehiculo(
     Modelo VARCHAR(50) NOT NULL,
     FechaDePatentamiento DATE NOT NULL,
     idCategoria INTEGER NOT NULL,
-	FOREIGN KEY(idCategoria) REFERENCES CategoriaDelVehículo(idCategoria)
+	FOREIGN KEY(idCategoria) REFERENCES CategoriaDelVehiculo(idCategoria)
 );
 
 CREATE TABLE PersonaDuenaDeVehiculo(

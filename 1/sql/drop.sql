@@ -19,7 +19,7 @@ DROP TABLE TipoDeAntecedente;
 DROP TABLE AntecedentePenal;
 DROP TABLE CategoriaDeLicencia;
 DROP TABLE LicenciaDeConducir;
-DROP TABLE CategoríaDelVehículo;
+DROP TABLE CategoriaDelVehiculo;
 DROP TABLE Vehiculo;
 DROP TABLE PersonaDuenaDeVehiculo;
 DROP TABLE PersonaPuedeManejarVehiculo;

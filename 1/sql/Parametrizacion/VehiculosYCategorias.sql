@@ -1,11 +1,11 @@
-INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 		VALUES (1, 'Motovehículos de 2 ruedas');
-INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 		VALUES (2, 'Motovehículos de 3 o 4 ruedas');
-INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 		VALUES (3, 'Automóviles particulares');
-INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 		VALUES (4, 'Vehiculos de Carga');
-INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 		VALUES (5, 'Transporte de pasajeros');
-INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 		VALUES (6, 'Camiones y maquinaria especial no agrícola');
-INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 		VALUES (7, 'Vehículos adaptados');
-INSERT INTO CategoríaDelVehículo		(idCategoria, Nombre) 		VALUES (8, 'Vehículos agrícolas');
+INSERT INTO CategoriaDelVehiculo		(idCategoria, Nombre) 		VALUES (1, 'Motovehiculos de 2 ruedas');
+INSERT INTO CategoriaDelVehiculo		(idCategoria, Nombre) 		VALUES (2, 'Motovehiculos de 3 o 4 ruedas');
+INSERT INTO CategoriaDelVehiculo		(idCategoria, Nombre) 		VALUES (3, 'Automóviles particulares');
+INSERT INTO CategoriaDelVehiculo		(idCategoria, Nombre) 		VALUES (4, 'Vehiculos de Carga');
+INSERT INTO CategoriaDelVehiculo		(idCategoria, Nombre) 		VALUES (5, 'Transporte de pasajeros');
+INSERT INTO CategoriaDelVehiculo		(idCategoria, Nombre) 		VALUES (6, 'Camiones y maquinaria especial no agricola');
+INSERT INTO CategoriaDelVehiculo		(idCategoria, Nombre) 		VALUES (7, 'Vehiculos adaptados');
+INSERT INTO CategoriaDelVehiculo		(idCategoria, Nombre) 		VALUES (8, 'Vehiculos agricolas');
 
 
 INSERT INTO Vehiculo 	(NroChapa, Marca, Modelo, FechaDePatentamiento, idCategoria) 	VALUES ('FKL 075','Chevrolet', 'Onix',    '23-10-04',3);

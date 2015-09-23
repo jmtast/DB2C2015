@@ -1,12 +1,12 @@
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Ruta Nacional');
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Ruta Provincial');
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Ruta Municipal');
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle Asfaltada Urbana');
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle Asfaltada Suburbana');
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Avenida');
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Autopista');
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle de Tierra Urbana');
-INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle de Tierra Suburbana');
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Ruta Nacional');				// 1
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Ruta Provincial');				// 2
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Ruta Municipal');				// 3
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle Asfaltada Urbana');		// 4
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle Asfaltada Suburbana');	// 5
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Avenida');						// 6
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Autopista');					// 7
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle de Tierra Urbana');		// 8
+INSERT INTO TipoDeCamino 				(Nombre) 					VALUES ('Calle de Tierra Suburbana');	// 9
 
 
 

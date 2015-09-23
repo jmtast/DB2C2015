@@ -34,6 +34,10 @@ INSERT INTO PolizaTieneTipoDeCobertura	(idPoliza, idTipoCobertura) 									VALU
 
 --
 -- Choques
+-- Personas que intervienen en las denuncias policiales:
+-- Como responsables: 2, 4, 7, 15, 16
+-- Como testigos: 3, 5, 1, 22, 24, 20, 21, 4
+-- Como participantes: 4, 6, 8, 7, 6, 9, 10, 11, 12, 13
 --
 
 DELETE FROM MedicionBooleano;
@@ -154,3 +158,28 @@ INSERT INTO RespRealizaPeritaje 		(idResponsable, idPeritaje) 									VALUES (7
 INSERT INTO MedicionBooleano 			(idParamBool, idPeritaje, Valor) 								VALUES (1, 10, 0);						
 INSERT INTO MedicionNumerico 			(idParamNum, idPeritaje, Valor) 									VALUES (4, 10, 3);						
 INSERT INTO MedicionNumerico 			(idParamNum, idPeritaje, Valor) 									VALUES (3, 10, 70);						
+
+--
+-- Personas que son due;as de vehiculos
+--
+
+-- Duenias de vehiculos de primera mano.
+
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (6, 2, '2015-01-01');
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (7, 2, '2015-01-01');
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (8, 4, '2015-01-01');
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (9, 7, '2015-01-01');
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (10, 15, '2015-01-01');
+
+-- Ex duenios que vendieron sus vehiculos
+
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (11, 6, '2015-02-01');
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (12, 12, '2015-02-01');
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (13, 8, '2015-02-01');
+
+-- Duenias de vehiculos de segunda mano
+
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (11, 16, '2015-09-01');
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (12, 4, '2015-09-01');
+INSERT INTO PersonaDuenaDeVehiculo (idVehiculo, idPersona, Fecha) VALUES (13, 7, '2015-09-01');
+

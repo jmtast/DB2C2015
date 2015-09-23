@@ -1,74 +1,16 @@
-
---
--- Autos que pertenecen a una persona al momento actual (no tiene en cuenta los que vendio)
---
-
-SELECT pdv1.idVehiculo
-FROM PersonaDuenaDeVehiculo pdv1
-WHERE
-	pdv1.idPersona = 0 AND
-	pdv1.idPersona = (
-		SELECT pdv.idPersona
-		FROM PersonaDuenaDeVehiculo pdv
-		WHERE 
-			pdv.idVehiculo = pdv1.idVehiculo
-		ORDER BY fecha desc
-		LIMIT 1
-	)
-
---
--- Autos que una persona esta habilitada a conducir, que son los que le pertenecen y para los que tiene cedula azul
---
-
-SELECT ppv.idVehiculo
-FROM PersonaPuedeManejarVehiculo ppv
-WHERE
-	ppv.idPersona = 1 AND
-	ppv.fechaDesde <= CURRENT_TIMESTAMP AND
-	ppv.fechaHasta > CURRENT_TIMESTAMP
-	
---
--- Autos una persona esta habilitada a conducir
---
-
-SELECT v.nroChapa, v.idVehiculo
-FROM Vehiculo v
-WHERE
-	v.idVehiculo IN (
-		SELECT pdv1.idVehiculo
-		FROM PersonaDuenaDeVehiculo pdv1
-		WHERE
-			pdv1.idPersona = 1 AND
-			pdv1.idPersona = (
-				SELECT pdv.idPersona
-				FROM PersonaDuenaDeVehiculo pdv
-				WHERE 
-					pdv.idVehiculo = pdv1.idVehiculo
-				ORDER BY fecha desc
-				LIMIT 1
-			)
-	UNION 
-		SELECT ppv.idVehiculo
-		FROM PersonaPuedeManejarVehiculo ppv
-		WHERE
-			ppv.idPersona = 1 AND
-			ppv.fechaDesde <= CURRENT_TIMESTAMP AND
-			ppv.fechaHasta > CURRENT_TIMESTAMP
-)
-
 --
 -- CONSULTA 1A)
 -- Cantidad de autos que una persona esta habilitada a conducir
 --
 
-SELECT COUNT(*)
-FROM Vehiculo
+SELECT p.idPersona, COUNT(*)
+FROM Vehiculo, Persona p
 WHERE
 	idVehiculo IN (
 	SELECT pdv1.idVehiculo
 	FROM PersonaDuenaDeVehiculo pdv1
 	WHERE
-		pdv1.idPersona = 1 AND
+		pdv1.idPersona = p.idPersona AND
 		pdv1.idPersona = (
 			SELECT pdv.idPersona
 			FROM PersonaDuenaDeVehiculo pdv
@@ -81,11 +23,11 @@ WHERE
 	SELECT ppv.idVehiculo
 	FROM PersonaPuedeManejarVehiculo ppv
 	WHERE
-		ppv.idPersona = 1 AND
+		ppv.idPersona = p.idPersona AND
 		ppv.fechaDesde <= CURRENT_TIMESTAMP AND
 		ppv.fechaHasta > CURRENT_TIMESTAMP
 )
-
+GROUP BY p.idPersona
 --
 -- CONSULTA 1B)
 -- Informacion sobre todos los accidentes en los que una persona intervino como responsable.

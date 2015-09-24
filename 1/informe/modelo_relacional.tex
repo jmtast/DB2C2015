@@ -84,7 +84,7 @@ A continuación documentamos el pasaje del \textbf{DER} anteriormente expuesto a
 \tuple{LicenciaDeConducir}{\pk{idLicencia}, FechaDesde, FechaHasta, \fk{idPersona}, \fk{idCatLic}}
 \ra{\attr{LicenciaDeConducir.FechaDesde} no puede ser nula.}
 \ra{\attr{LicenciaDeConducir.FechaHasta} no puede ser nula.}
-\ra{\attr{LicenciaDeConducir.FechaDesde} debe ser anterior a \attr{LicenciaDeConducir.FechaHasta}.}
+\ra{\attr{LicenciaDeConducir.FechaDesde} debe ser anterior a \attr{LicenciaDeConducir.FechaHasta}. Esto lo implementamos usando \textbf{triggers}.}
 \ra{\attr{LicenciaDeConducir.idPersona} no puede ser nulo.}
 \ra{\attr{LicenciaDeConducir.idCatLic} no puede ser nulo.}
 \ra{Para un mismo \attr{LicenciaDeConducir.idPersona}, los rangos de Fecha de Licencia (FechaDesde~FechaHasta) son excluyentes. Es decir, una persona dada puede tener una única licencia vigente.}
@@ -105,6 +105,8 @@ A continuación documentamos el pasaje del \textbf{DER} anteriormente expuesto a
 \tuple{PersonaPuedeManejarVehiculo}{\pk{idVehiculo}, \pk{idPersona}, \pk{FechaDesde}, FechaHasta}
 \ra{\attr{PersonaPuedeManejarVehiculo.FechaDesde} no puede ser nulo.}
 \ra{\attr{PersonaPuedeManejarVehiculo.FechaHasta} no puede ser nulo.}
+\ra{Una persona no puede tener una cédula azul para un vehículo del cual es dueña. Esto lo implementamos usando \textbf{triggers}.}
+\ra{\attr{PersonaPuedeManejarVehiculo.FechaDesde} debe ser menor a \attr{PersonaPuedeManejarVehiculo.FechaHasta}}
 \\
 \tuple{CategoriaDelVehiculo}{\pk{idCategoria}, Nombre}
 \ra{\attr{CategoriaDelVehiculo.Nombre} no puede ser nulo.}

@@ -8,3 +8,7 @@
 8-TipoDeInfraccion.sql
 9-LicenciasDeConducir.sql
 10-VehiculosYCategorias.sql
+11-Polizas.sql
+12-Multas.sql
+13-AntecedentePenal.sql
+14-parametros.sql

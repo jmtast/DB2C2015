@@ -3,7 +3,7 @@
 -- Cantidad de autos que una persona esta habilitada a conducir
 --
 
-SELECT p.idPersona, COUNT(*)
+SELECT p.idPersona,p.nombre,p.apellido,p.dni, COUNT(*)
 FROM Vehiculo, Persona p
 WHERE
 	idVehiculo IN (
@@ -40,7 +40,7 @@ WHERE
 	r.idPersona = lc.idPersona AND
 	c.idCamino = dp.idCamino AND
 	ma.idModalidad = dp.idModalidad AND
-	lc.idLicencia = 0
+	lc.idLicencia = 4
 	
 --
 -- CONSULTA 2)
@@ -50,7 +50,7 @@ WHERE
 SELECT l.idLicencia, COUNT(*) AS cnt
 FROM LicenciaDeConducir l, DenunciaPolicial dp, Responsable r
 WHERE
-	dp.idModalidad = 0 AND
+	dp.idModalidad = 2 AND
 	dp.idDenuncia = r.idDenuncia AND
 	r.idPersona = l.idPersona
 GROUP BY dp.idDenuncia

@@ -66,7 +66,7 @@ CREATE TABLE MedicionString (
 	idPeritaje  INTEGER  NOT NULL ,
 	Valor VARCHAR(50) NOT NULL, 
 	PRIMARY KEY (idParamString,idPeritaje),
-	FOREIGN KEY(idParamString) REFERENCES ParametroNumerico(idParamString),
+	FOREIGN KEY(idParamString) REFERENCES ParametroString(idParamString),
 	FOREIGN KEY(idPeritaje) REFERENCES Peritaje(idPeritaje)
 );
 
@@ -75,7 +75,7 @@ CREATE TABLE MedicionNumerico (
 	idPeritaje  INTEGER   NOT NULL ,
 	Valor FLOAT NOT NULL,
 	PRIMARY KEY (idParamNum,idPeritaje),
-	FOREIGN KEY(idParamNum) REFERENCES ParametroString(idParamNum),
+	FOREIGN KEY(idParamNum) REFERENCES ParametroNumerico(idParamNum),
 	FOREIGN KEY(idPeritaje) REFERENCES Peritaje(idPeritaje)
 );
 

@@ -1,0 +1,17 @@
+\section{Anexo}
+\subsection{Readme - Implementación}
+En el directorio \textbf{sql} se incluyen los archivos sql utilizados en la implementacion pedida.\\
+\\
+\indent El motor usado es \textbf{SQLite}. Es un motor pequeño, pero que cubre todos los elementos a ser usados en el trabajo práctico y permitio facilidad en el desarrollo, al no precisar un entorno complejo corriendo, junto a su poco consumo en espacio. La herramienta usada para crear y acceder a las bases SQLite que utilizamos es \href{http://sqlitebrowser.org/}{\underline{\textbf{SQLite Browser}}}.\\
+\\
+\indent Para mayor comodidad proveemos un archivo DB\_RUAT (formato SQLITE) que puede ser abierto con la herramienta y tiene todas las tablas y datos cargados.\\
+\\
+\indent En caso de querer generar todo de cero, el procedimiento a realizar seria:
+\begin{enumerate}
+	\item Crear una nueva base vacia (crea el archivo sqlite)
+	\item Ejecutar script de creacion de la base : creacion.sql
+	\item Ejecutar en orden los scripts de carga de datos presentes en el directorio :Parametrizacion
+	\item Ejecutar el script de creacion del trigger: trigger.sql
+	\item Finalmente se pueden probar las consultas presentes en el archivo: consultas.sql
+\end{enumerate}
+\indent \nota{La herramienta SQLite Browser por default no chequea ForeignKeys (permite crearlas pero no las valida). Para poder utilizarlas se debe activar el check ``ForeignKeys'' presente en el tab ``Edit\_Pragmas''.}

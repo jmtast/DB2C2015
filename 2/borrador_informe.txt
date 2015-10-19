@@ -1,0 +1,66 @@
+TP2
+
+Parte 1
+Los empleados que atendieron clientes mayores de edad:
+
+Para este punto embebimos una parte de la información de clientes en el objeto empleados. De esta forma podemos resolver la consulta pedida y en caso de ser necesario, buscar el objeto cliente entero para garantizar escalabilidad. La resolución sería:
+
+Empleado: {
+  _NroLegajo
+  Nombre
+  ClientesAtendidos:[{ _DNI, Edad }]
+}
+
+======================
+
+Los artículos más vendidos:
+
+Se nos ocurren 3 opciones:
+1) Embeber la información de compra dentro del artículo. El problema con este enfoque es que se replicaría la información del cliente en cada compra, y además la consulta pedida queda muy compleja de hacer.
+
+2) Mantener una lista de artículos comprados dentro de cada cliente. Esto reduce la replicación de información, pero sigue sin solucionar la complejidad de la consulta pedida.
+
+3) Finalmente, podemos reutilizar la idea del punto 2 y agregar un contador de ventas dentro de cada artículo. Esto nos permite resolver la consulta de manera eficiente, con mínima redundancia, sin perder la información del modelo.
+
+======================
+
+Los sectores donde trabajan exactamente 3 empleados. Puede haber un empleado que contabiliza para varios sectores:
+
+La solución propuesta es:
+
+Sector: {
+  Trabaja: [{_NroLegajo, _IdTarea}]
+}
+
+La consulta se resuelve buscando qué sectores tienen exactamente 3 elementos en el array "Trabaja". Esto vale porque la aridad de la ternaria no permite que haya un empleado de un sector con más de 1 tarea asignada.
+
+======================
+
+Empleado que trabaja en más sectores:
+
+Tendríamos en cada empleado, una lista de los sectores en los que trabaja. Esto hace que el modelo de empleado actualizado quede así:
+
+Empleado: {
+  _NroLegajo
+  Nombre
+  ClientesAtendidos:[{ _DNI, Edad }]
+  Sectores: [_CodSector]
+}
+
+Podemos resolver esta consulta contando la longitud del array de sectores de cada empleado, y quedándonos con el de mayor longitud. (Idea por si no se puede hacer sin map reduce: tener en lugar del array de sectores, un contador de sectores, que nos permita ordenar los empleados por cantidad de sectores en los que trabaja, y quedarnos con el primero).
+
+======================
+
+Ranking de los clientes con mayor cantidad de compras:
+
+En caso de que se pueda hacer el conteo y posterior filtro a un array de un objeto (ver ejemplo anterior), con el objeto cliente que armamos en el ítem 2, ya nos alcanza para contar al de mayor cantidad de compras y devolverlo.
+
+Caso contrario, se puede resolver la consulta, manteniendo un contador de ventas, pudiendo posteriormente ordenar los clientes por cantidad de compras, para luego quedarnos con el primero.
+
+======================
+
+Cantidad de compras realizadas por clientes de la misma edad:
+
+CONSULTAR
+
+Ideas: Tabla de edades (donde tendríamos una cantidad de compras realizadas para gente con esa edad. La más directa para la consulta pedida, pero es medio fea), tabla de compras (donde tendríamos los datos del cliente que compró, incluída su edad al momento de la compra)

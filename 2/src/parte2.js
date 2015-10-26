@@ -1,9 +1,13 @@
 var conn = new Mongo ();
 var db = conn.getDB ("tp2_2");
 
+db.fecha_mas_citada.drop();
+db.citas_de_fechas.drop();
 db.disposiciones_por_tipo.drop();
 db.resoluciones_abril_2013.drop();
 
+// Parte 2 - Item 1
+// Resoluciones Abril 2013
 db.disposiciones.mapReduce (
   function () {
     var fecha = new Date(this.FechaDisposicion);
@@ -22,6 +26,8 @@ db.disposiciones.mapReduce (
   }
 );
 
+// Parte 2 - Item 2
+// Disposiciones por tipo
 db.disposiciones.mapReduce (
   function () {
     emit(this.Tipo, 1);
@@ -32,3 +38,20 @@ db.disposiciones.mapReduce (
     out: "disposiciones_por_tipo"
   }
 );
+
+// Parte 2 - Item 3
+// Fecha más citada
+db.disposiciones.mapReduce (
+  function () {
+    emit(new Date(this.FechaBOJA).toLocaleDateString(), 1);
+    emit(new Date(this.FechaDescripcion).toLocaleDateString(), 1);
+  },
+  function (key, values) {
+    return Array.sum(values);
+  }, {
+    out: "citas_de_fechas"
+  }
+);
+
+db.createCollection("fecha_mas_citada");
+db.fecha_mas_citada.insert({fecha_mas_citada: db.citas_de_fechas.find().sort({value: -1}).limit(2)[1]._id});

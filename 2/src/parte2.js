@@ -1,6 +1,7 @@
 var conn = new Mongo ();
 var db = conn.getDB ("tp2_2");
 
+db.mayor_cantidad_de_paginas_utilizadas.drop();
 db.fecha_mas_citada.drop();
 db.citas_de_fechas.drop();
 db.disposiciones_por_tipo.drop();
@@ -26,6 +27,8 @@ db.disposiciones.mapReduce (
   }
 );
 
+// ==============================
+
 // Parte 2 - Item 2
 // Disposiciones por tipo
 db.disposiciones.mapReduce (
@@ -38,6 +41,8 @@ db.disposiciones.mapReduce (
     out: "disposiciones_por_tipo"
   }
 );
+
+// ==============================
 
 // Parte 2 - Item 3
 // Fecha más citada
@@ -55,3 +60,27 @@ db.disposiciones.mapReduce (
 
 db.createCollection("fecha_mas_citada");
 db.fecha_mas_citada.insert({fecha_mas_citada: db.citas_de_fechas.find().sort({value: -1}).limit(2)[1]._id});
+
+// ==============================
+
+// Parte 2 - Item 4
+// Mayor cantidad de páginas utilizadas
+db.disposiciones.mapReduce (
+  function () {
+    emit(this.Tipo, (this.PaginaFinal - this.PaginaInicial) + 1);
+  },
+  function (key, values) {
+    var i, max;
+    max = values[0];
+
+    for (i = 1; i < values.length; i++){
+      if (values[i] > max) {
+        max = values[i];
+      }
+    }
+
+    return max;
+  }, {
+    out: "mayor_cantidad_de_paginas_utilizadas"
+  }
+);

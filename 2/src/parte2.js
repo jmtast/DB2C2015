@@ -1,6 +1,7 @@
 var conn = new Mongo ();
 var db = conn.getDB ("tp2_2");
 
+db.disposiciones_por_tipo.drop();
 db.resoluciones_abril_2013.drop();
 
 db.disposiciones.mapReduce (
@@ -18,5 +19,16 @@ db.disposiciones.mapReduce (
     return Array.sum(values);
   }, {
     out: "resoluciones_abril_2013"
+  }
+);
+
+db.disposiciones.mapReduce (
+  function () {
+    emit(this.Tipo, 1);
+  },
+  function (key, values) {
+    return Array.sum(values);
+  }, {
+    out: "disposiciones_por_tipo"
   }
 );

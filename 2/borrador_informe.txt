@@ -57,6 +57,10 @@ En caso de que se pueda hacer el conteo y posterior filtro a un array de un obje
 
 Caso contrario, se puede resolver la consulta, manteniendo un contador de ventas, pudiendo posteriormente ordenar los clientes por cantidad de compras, para luego quedarnos con el primero.
 
+---
+El cliente tiene un array con las compras. El array contiene el código de artículo y la cantidad. Luego se cuenta esa cantidad y con eso se elige el cliente con más compras.
+---
+
 ======================
 
 Cantidad de compras realizadas por clientes de la misma edad:

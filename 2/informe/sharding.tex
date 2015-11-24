@@ -119,5 +119,23 @@ Se realizaron varias pruebas para cada tipo de indice, sin embargo se provee sol
 \subsection{Analisis}
 
 Se puede ver que  utilizando un \textit{indice simple} para un campo en el cual los datos estan generados de manera aleatoria, lo que sucede es que empieza a crecer un shard mas que otros y en algun momento el balanceador decide migrar un subconjunto de estos datos a otro shard menos cargado. Esto se va realizando varias veces durante la carga de datos, de acuerdo al nivel de crecimiento de cada shard.\\
-Una vez realizadas las pruebas verificamos cual es el mecanismo utilizado por mongodb en estos casos y esta explicado en la seccion \textbf{Chunk Migration Across Shards} del manual de mongodb.Basicamente decide balancear cuando la diferencia entre la cantidad de \textit{chunks} entre el shard con mas \textit{chunks}  y el shard con menos \textit{chunks} es superior a un valor configurado internamente dentro del balanceador de mongodb.\\
-Utilizando un \textit{indice hash} lo que sucede es que los registros generados se van insertando de manera pareja entre todos los shards y en ese caso nunca le hace falta al balanceador hacer una migracion de \textit{chunks}.
+Una vez realizadas las pruebas verificamos cual es el mecanismo utilizado por mongodb en estos casos y esta explicado en la seccion \textbf{Chunk Migration Across Shards} del manual de mongodb. Básicamente decide balancear cuando la diferencia entre la cantidad de \textit{chunks} entre el shard con mas \textit{chunks}  y el shard con menos \textit{chunks} es superior a un valor configurado internamente dentro del balanceador de mongodb.\\
+Utilizando un \textit{indice hash} lo que sucede es que los registros generados se van insertando de manera pareja entre todos los shards y en ese caso nunca le hace falta al balanceador hacer una migración de \textit{chunks}.
+
+\subsection{Escenarios posibles para sharding}
+Algunos escenarios posibles para sharding son:\\
+
+Tener una base con consultas/visitas de clientes a un sitio web con alta concurrencia, que guarden que items vio, en que esta interesado, historial de navegación, etc. Estas consultas/visitas pueden crecer muy rápidamente y generar un volumen my grande de datos. En este caso una base con mongodb con sharding permitiría un crecimiento acorde al uso que va teniendo la aplicación.Un atributo posible para sharding en este caso es el numero de cliente.\\
+
+Tener una empresa de logística o correo, que quiere mantener una base con el total de envíos de paquetes realizados, en este caso se podría utilizar como atributo de sharding código postal del destinatario, siempre y cuando el envío de paquetes realizados tenga una distribución uniforme ( o lo mas próxima posible a uniforme ) y variada de destinos para los envíos con los que trabaja.En este caso la base podría crecer lo que fuera necesario y sabríamos que tendríamos equilibrada entre todos los shards.\\
+
+Queremos tener una base de datos de usuarios conectados a un juego online de alta concurrencia. Esta base debe guardar información variada de los jugadores y de las partidas mientras están conectados. Esta base puede tener variaciones en la carga dependiendo de los días del horario, día de la semana o época del año (en vacaciones tiene mas uso). En este caso se podría usar el sharding para permitir un crecimiento/decrecimiento de la base de acuerdo a lo que fuera necesario y de manera equilibrada. En este caso podríamos usar como atributo para sharding el id de jugador.\\
+
+
+\subsection{Características de un atributo para sharding}
+Un atributo para ser usado como clave en un esquema de sharding debe tener algunas características:\\
+
+\begin{itemize}		
+	\item Alta Cardinalidad: Si un atributo tiene baja cardinalidad no es útil para sharding, ya que todos los registros con el mismo atributo terminan en un mismo chunk y en caso de que uno quisiera tener un numero grande de shards, esta acotado por la cardinalidad de este atributo.
+	\item Tener una distribución uniforme: Un atributo debe tener una distribucion uniforme para el dominio del problema en el que se esta trabajando, ya que si no es posible que se llenen mucho algunos shards y otros queden vacios. Por ejemplo utilizar código postal como clave para shard puede ser bueno (inclusive con los balanceos) si tiene una distribución pareja (tenemos personas o clientes de todo el país), sin embargo si nuestra base de clientes es de un solo barrio de una ciudad, la variabilidad de códigos postales puede ser muy acotada.
+\end{itemize}

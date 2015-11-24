@@ -1,1 +1,85 @@
-\section{Desnormalización}
+\section{Desnormalizaci\'on}
+
+Para la resoluci\'on de este ejercicio entregamos el dise\~no f\'isico de la DB realizado en formato JSON con el agregado de que en lugar de indicar un valor para cada atributo indicamos el tipo de datos. De esta forma hacemos mas legible el modelo. Adem\'as discutimos cada uno de los puntos de optimizaci\'on pedidos comentando las distintas variantes que evaluamos para la resoluci\'on de los mismos. Para la definici\'on de los tipos de datos a utilizar, al no estar especificados en el DER, los elegimos de la forma que nos pareci\'o mas relevante al contexto.
+
+El dise\~no de la DB propuesto es el siguiente:
+   
+\begin{verbatim}
+db: {
+	Clientes: [{
+		DNI						: int,
+		Nombre					: string,
+		Edad					: int,
+		CantCompras				: int,
+		CantComprasMismaEdad	: int
+	}], 
+	Empleados: [{
+		NroLegajo,
+		Nombre,
+		ClientesAtendidos:[{ 
+			DNI		: int, 
+			Edad	: int,
+			Nombre	: string,
+			Fecha	: string
+		}],
+		Sectores: [{
+			CodSector: string,
+			IdTarea: int
+		}]
+	}],
+	Articulos: [{
+		CodBarras	: string,
+		Nombre		: string,
+		CantVendidos: int,
+		CodSector	: string
+	}],
+	Sectores: [{
+		CodSector: string,
+		Trabaja: [{
+			NroLegajo, 
+			IdTarea
+		}]
+	}],
+	Tareas: [{
+		IdTarea: int,
+		Descripcion: string
+	}]
+}
+\end{verbatim}
+
+\subsection{Resoluci\'on de Consultas}
+
+\subsubsection{Empleados que atendieron a clientes de mayor edad}
+
+Para resolver esta consulta embebimos informaci\'on de los clientes dentro del documento de Empleados, agregando una lista de clientes atendidos. De esta forma, al obtener el documento del empleado correspondiente podemos acceder directamente a los datos de todos los clientes que fueron atendidos por \'el, y por lo tanto tambi\'en podemos hacer un filtro sobre la entidad Empleados que devuelva los empleados que atendieron a los clientes mayores de edad.
+
+\subsubsection{Los articulos mas vendidos}
+
+Para resolver esta consulta se nos ocurren 3 opciones:
+
+\begin{enumerate}
+	\item Embeber la informaci\'on de compra dentro del art\'iculo. El problema con este enfoque es que se replicar\'ia la informaci\'on del cliente en cada compra, y adem\'as la consulta pedida queda muy compleja de hacer.
+
+	\item Mantener una lista de art\'iculos comprados dentro de cada cliente. Esto reduce la replicaci\'on de informaci\'on, pero sigue sin solucionar la complejidad de la consulta pedida.
+
+	\item Finalmente, optamos por reutilizar la idea del punto 2 y agregar un contador de ventas dentro de cada art\'iculo. Esto nos permite resolver la consulta de manera eficiente, con m\'inima redundancia, sin perder la informaci\'on del modelo.
+\end{enumerate}
+
+\subsubsection{Los sectores donde trabajan exactamente 3 empleados}
+
+La consulta se resuelve buscando qu\'e sectores tienen exactamente 3 elementos en el array "Trabaja". Esto vale porque la aridad de la ternaria no permite que haya un empleado de un sector con m\'as de 1 tarea asignada
+
+Para resolver esta consulta embebimos una parte de la informaci\'on perteneciente a la entidad Empleado dentro del documento Sector, de esta forma resolvemos efici\'entemente la consulta (que se realiza contando la cantidad de elementos del array Trabajapor cada sector) y mantenemos replicada solo la informaci\'on necesaria para resolverla.
+
+\subsubsection{El empleado que trabaja en m\'as sectores}
+
+Para esta consulta decicimos guardar en cada empleado una lista de los sectores en los que trabaja. De esta forma podemos resolver esta consulta contando la longitud del array de sectores de cada empleado, y qued\'andonos con el de mayor longitud. 
+
+\subsubsection{Ranking de los clientes con mayor cantidad de compras}
+
+Para optimizar al m\'aximo esta consulta optamos por mantener un contador de compras dentro del documento de clientes. De esta forma resulta trivial el armado de un ranking de clientes con mayor cantidad de compras. Adem\'as esta opci\'on solo requiere que al realizar una venta actualicemos el contador de compras del cliente.
+
+\subsubsection{Cantidad de compras realizadas por clientes de la misma edad}
+
+Para resolver esta consulta decidimos agregar un contador de compras extra a la entidad cliente que cuenta el n\'umero de compras realizadas por clientes de esa edad. De esta forma por cada compra realizada, debemos incrementar el contador de todos los clientes que tengan la misma edad que el contador. \'Esto nos permite mantener un nivel \'optimo de redundancia y evitar soluciones mas desprolijas como crear una tabla de edades por ejemplo.
+

@@ -1,1 +1,81 @@
 \section{Map Reduce}
+
+A continuaci\'on incluimos el c\'odigo de las consultas a realizar utilizando Map Reduce:
+
+\subsubsection{Consulta 1}
+Devolver la cantiad de disposiciones tipo resoluciones que se hayan realizado en Abril del 2013
+
+\begin{lstlisting}
+db.disposiciones.mapReduce (
+  function () {
+    var fecha = new Date(this.FechaDisposicion);
+
+    if ((fecha.getMonth() + 1) == 4 && (fecha.getFullYear() == 2013) && this.Tipo == "Resoluciones") {
+      emit("Resoluciones", 1);
+    }
+  },
+  function (key, values) {
+    return Array.sum(values);
+  }, {
+    out: "resoluciones_abril_2013"
+  }
+);
+\end{lstlisting}
+
+\subsubsection{Consulta 2}
+Devolver la cantiadd de disposiciones por cada tipo definido
+
+\begin{lstlisting}
+db.disposiciones.mapReduce (
+  function () {
+    emit(this.Tipo, 1);
+  },
+  function (key, values) {
+    return Array.sum(values);
+  }, {
+    out: "disposiciones_por_tipo"
+  }
+);
+\end{lstlisting}
+
+\subsubsection{Consulta 3}
+Devolver la fecha m\'as citada para todos los informes. Descartar las fechas embebidas en descripci\'on
+
+\begin{lstlisting}
+db.disposiciones.mapReduce (
+  function () {
+    emit(new Date(this.FechaBOJA).toLocaleDateString(), 1);
+    emit(new Date(this.FechaDescripcion).toLocaleDateString(), 1);
+  },
+  function (key, values) {
+    return Array.sum(values);
+  }, {
+    out: "citas_de_fechas"
+  }
+);
+\end{lstlisting}
+
+\subsubsection{Consulta 4}
+Devolver la mayor cantidad de p\'aginas utilizadas por cada tipo de disposici\'on
+
+\begin{lstlisting}
+db.disposiciones.mapReduce (
+  function () {
+    emit(this.Tipo, (this.PaginaFinal - this.PaginaInicial) + 1);
+  },
+  function (key, values) {
+    var i, max;
+    max = values[0];
+
+    for (i = 1; i < values.length; i++){
+      if (values[i] > max) {
+        max = values[i];
+      }
+    }
+
+    return max;
+  }, {
+    out: "mayor_cantidad_de_paginas_utilizadas"
+  }
+);
+\end{lstlisting}

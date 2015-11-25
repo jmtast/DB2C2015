@@ -4,7 +4,8 @@ En esta \'ultima secci\'on del informe analizaremos la utilidad de otras bases d
 
 De esta forma, podemos citar el ejemplo de las Graph databases, con las cuales ser\'ia muy poco ventajosa la implementaci\'on del TP, ya que, por ejemplo en el primer punto, donde se pide mostrar una implementaci\'on desnormalizada del DER propuesto, los datos no est\'an organizados en forma de una red de entidades y relaciones, sino que tienen una representaci\'on mas natural como collecciones de entidades similares, lo cual es mas coherente con el modelo de document databases.
 
-En el caso de las bases de datos orientadas a columnas, blah...
+En el caso de las bases de datos orientadas a columnas, el objetivo principal de las mismas es poder hacer consultas u operaciones totalizadoras, sobre todos los valores de un tipo de dato (una columna) y no tanto para el uso normal relacional(un ejemplo clásico serian consultas tipo datawarehousing). La principal ventaja de este tipo de bases para las consultas totalizadoras es que optimizan muchísimo los acceso a disco; una de sus desventajas es que no son buenas para el manejo de transaccionalidad y joins de uso habitual en bases relacionales.
+Para el punto 1, podría llegar a servir como una bases complementaria donde guardar el histórico de ventas y atenciones (una vez realizada cada venta) y poder realizar las consultas totalizadoras sobre las mismas, pero no seria útil para el manejo de la relaciones entre empleado-sector-tarea o artículos-sector, dar de alta nuevos artículos o clientes, etc (para eso quizás seria mejor una base relacional) \\
 
 En el caso de las bases de datos Key-Value su dise\~no es mas simple que el resto de las DBs no relacionales vistas dado que sus datos se organizan en tuplas (key, value), donde es muy importante la elecci\'on de la clave, ya que ella se usa para "almacenar" una parte de la informaci\'on. 
 

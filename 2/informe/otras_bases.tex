@@ -9,7 +9,9 @@ Para el punto 1, podría llegar a servir como una bases complementaria donde gua
 
 En el caso de las bases de datos Key-Value su dise\~no es mas simple que el resto de las DBs no relacionales vistas dado que sus datos se organizan en tuplas (key, value), donde es muy importante la elecci\'on de la clave, ya que ella se usa para "almacenar" una parte de la informaci\'on. 
 
-El ejercicio del punto 1 podr\'ia plantearse creando un bucket para cada una de las entidades presentes en el DER y creando buckets adicionales para guardar los campos necesarios para cumplir con las consultas, con lo cual tendr\'iamos un alto nivel de redundancia pero al mismo tiempo una gran disponibilidad de datos y optimizar\'iamos el tiempo de consulta.
+El ejercicio del primer punto podr\'ia plantearse creando un bucket para cada una de las entidades presentes en el DER y creando buckets adicionales para guardar los campos necesarios para cumplir con las consultas, con lo cual tendr\'iamos un alto nivel de redundancia pero al mismo tiempo una gran disponibilidad de datos y optimizar\'iamos el tiempo de consulta.
+
+En el caso del ejercicio del punto dos, si bien existe soporte para realizar consultas utilizando Map Reduce en algunos motores de bases de datos key-value, esto no es lo mas natural. Algunas de los motores que contemplan esta funcionalidad son DynamoDB y Couch DB.
 
 
 

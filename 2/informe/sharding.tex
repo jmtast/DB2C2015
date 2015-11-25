@@ -116,7 +116,7 @@ Se realizaron varias pruebas para cada tipo de indice, sin embargo se provee sol
  \includegraphics[width=\linewidth]{IndiceHashChart.png}
  
 \pagebreak
-\subsection{Analisis}
+\subsection{Análisis}
 
 Se puede ver que  utilizando un \textit{indice simple} para un campo en el cual los datos estan generados de manera aleatoria, lo que sucede es que empieza a crecer un shard mas que otros y en algun momento el balanceador decide migrar un subconjunto de estos datos a otro shard menos cargado. Esto se va realizando varias veces durante la carga de datos, de acuerdo al nivel de crecimiento de cada shard.\\
 Una vez realizadas las pruebas verificamos cual es el mecanismo utilizado por mongodb en estos casos y esta explicado en la seccion \textbf{Chunk Migration Across Shards} del manual de mongodb. Básicamente decide balancear cuando la diferencia entre la cantidad de \textit{chunks} entre el shard con mas \textit{chunks}  y el shard con menos \textit{chunks} es superior a un valor configurado internamente dentro del balanceador de mongodb.\\
